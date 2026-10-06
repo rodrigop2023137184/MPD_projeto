@@ -218,11 +218,6 @@ Valores de exemplo a confirmar com o armador: peso por caixa (25 kg bacalhau, 20
 - Triggers opcionais por implementar: numeração automática de viagens e lances, e validação das datas dos lances face às da viagem.
 - Consultas de análise para a defesa (rendimento, quota consumida, rastreabilidade de uma caixa) — `05_consultas.sql`, em preparação.
 
-## Autores
 
-| Nome | N.º de estudante |
-| --- | --- |
-| Rodrigo | |
-| | |
 
 Unidade curricular de Modelação e Preparação de Dados · ISCAC | Coimbra Business School · 2026/2027
