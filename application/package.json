@@ -1,0 +1,20 @@
+{
+  "name": "sta-princesa-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Protótipo da aplicação de bordo do navio-fábrica Santa Princesa (MPD 2026/27)",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "verificar": "node scripts/verificar-ligacao.js"
+  },
+  "dependencies": {
+    "express": "5.3.0",
+    "mysql2": "3.24.5"
+  }
+}

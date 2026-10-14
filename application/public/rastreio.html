@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rastrear uma caixa — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1>Rastrear uma caixa</h1>
+    <div class="crumb">Pesquisa pelo código impresso na caixa</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+
+    <form id="pesquisa" class="row" style="align-items: flex-end" novalidate>
+      <div class="f">
+        <label for="codigo">Código do lote</label>
+        <input class="in" id="codigo" list="codigos" maxlength="30" autocomplete="off"
+               placeholder="SP-T11-COD-004" required>
+        <datalist id="codigos"></datalist>
+      </div>
+      <div>
+        <button class="btn" type="submit" id="pesquisar">Pesquisar</button>
+      </div>
+    </form>
+
+    <div id="resultado" hidden>
+      <div class="row mt" id="cartoes"></div>
+
+      <h2>Origem — lances</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th>Lance</th>
+              <th>Período (UTC)</th>
+              <th>Zona</th>
+              <th>Posição</th>
+              <th class="num">Profundidade (m)</th>
+              <th class="num">Peso vivo (kg)</th>
+              <th class="num">% do lote</th>
+            </tr>
+          </thead>
+          <tbody id="lances"></tbody>
+        </table>
+      </div>
+
+      <h2>Destino — movimentos</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th>Data (UTC)</th>
+              <th>Movimento</th>
+              <th>Porão</th>
+              <th class="num">Caixas</th>
+              <th>Destino</th>
+              <th>Comprador</th>
+            </tr>
+          </thead>
+          <tbody id="movimentos"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/js/rastreio.js"></script>
+</body>
+</html>

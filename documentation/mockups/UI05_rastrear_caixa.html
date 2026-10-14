@@ -1,0 +1,67 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1200px;height:760px;font-family:'DejaVu Sans',Arial,sans-serif;background:#f6f6f6;color:#1f2933;display:flex;font-size:13px}
+.side{width:210px;background:#eef1f4;padding:26px 18px;flex-shrink:0;border-right:1px solid #dde1e6}
+.brand{font-size:21px;font-weight:700;color:#555;letter-spacing:.5px}
+.sub{font-size:11.5px;color:#6b7280;margin:4px 0 28px}
+.nav div{padding:10px 12px;border-radius:6px;margin-bottom:6px;color:#333;font-size:14px}
+.nav .on{background:#dfe3e8;font-weight:700}
+.side .foot{position:absolute;bottom:22px;font-size:11px;color:#8a9099;width:174px;line-height:1.5}
+main{flex:1;padding:28px 40px;overflow:hidden}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+.crumb{color:#6b7280;font-size:12.5px;padding-bottom:14px;border-bottom:1px solid #d4d8dd;margin-bottom:18px}
+h2{font-size:16px;font-weight:700;margin:16px 0 10px}
+.row{display:flex;gap:16px}
+.f{flex:1}
+label{display:block;font-size:11.5px;font-weight:700;color:#5b6573;margin-bottom:5px}
+.in{border:1px solid #c9d0d8;background:#fff;border-radius:6px;padding:9px 11px;color:#4b5563;font-size:12.5px;height:36px;white-space:nowrap;overflow:hidden}
+.in.ro{background:#eef0f2;color:#6b7280}
+.box{border:1px solid #c9d0d8;background:#fff;border-radius:8px;padding:6px 16px}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#5b6573;text-align:left;padding:9px 6px;border-bottom:1px solid #e3e6ea}
+td{padding:8px 6px;font-size:12.5px;border-bottom:1px solid #f0f1f3}
+tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.btn{display:inline-block;background:#5b5b5b;color:#fff;border-radius:6px;padding:11px 18px;font-weight:700;font-size:13px}
+.btn.sec{background:#fff;color:#444;border:1px solid #b8bec6}
+.note{border:1px dashed #9aa3ad;background:#f0f1f3;border-radius:6px;padding:9px 12px;font-size:12px;color:#444}
+.warn{border:1px solid #9aa3ad;border-left:5px solid #555;background:#fff;border-radius:6px;padding:9px 12px;font-size:12px}
+.tile{flex:1;border:1px solid #c9d0d8;background:#fff;border-radius:8px;padding:14px 16px}
+.tile .k{font-size:11.5px;color:#5b6573;font-weight:700}
+.tile .v{font-size:22px;font-weight:700;margin-top:6px}
+.tile .s{font-size:11px;color:#6b7280;margin-top:3px}
+.bar{height:12px;background:#e6e9ec;border-radius:6px;position:relative;min-width:260px}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:#7a7a7a;border-radius:6px}
+.bar b{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed #555}
+.pill{display:inline-block;border:1px solid #9aa3ad;border-radius:10px;padding:1px 9px;font-size:11px}
+.radio{display:inline-block;margin-right:18px;font-size:12.5px}
+.right{text-align:right}
+.mt{margin-top:14px}
+</style></head><body>
+<div class="side"><div class="brand">STA PRINCESA</div><div class="sub">Gestão de bordo · navio-fábrica</div>
+<div class="nav"><div class="">Painel de quotas</div><div class="">Lances e capturas</div><div class="">Fábrica — lotes</div><div class="">Porões e saídas</div><div class="on">Rastreabilidade</div><div class="">Viagens e escalas</div></div>
+<div class="foot">Utilizador: app_armador<br>Viagem em curso: Trip 12</div></div>
+<main><h1>Rastrear uma caixa</h1><div class="crumb">Pesquisa pelo código impresso na caixa</div>
+<div class="row" style="align-items:flex-end">
+ <div class="f"><label>Código do lote</label><div class="in">SP-T11-COD-004</div></div>
+ <div><span class="btn">Pesquisar</span></div>
+</div>
+<div class="row mt">
+ <div class="tile"><div class="k">Produto</div><div class="v" style="font-size:17px">Bacalhau HEG</div><div class="s">197 caixas · 4 925 kg</div></div>
+ <div class="tile"><div class="k">Produzido</div><div class="v" style="font-size:17px">15/07 12:00–18:00</div><div class="s">Trip 11 · Hugo Marques</div></div>
+ <div class="tile"><div class="k">Rendimento</div><div class="v" style="font-size:17px">66,6 %</div><div class="s">de 7 400 kg de peso vivo</div></div>
+ <div class="tile"><div class="k">Ainda a bordo</div><div class="v" style="font-size:17px">97 caixas</div><div class="s">Porão 1</div></div>
+</div>
+<h2>Origem — lances</h2>
+<div class="box"><table>
+ <tr><th>Lance</th><th>Período (UTC)</th><th>Zona</th><th>Posição</th><th class="num">Peso vivo (kg)</th><th class="num">% do lote</th></tr>
+ <tr><td>4</td><td>14/07 11:00–14:30</td><td>2.b ZEE Noruega</td><td>73.75 N · 19.55 E</td><td class="num">6 800</td><td class="num">91,9</td></tr>
+ <tr><td>5</td><td>15/07 06:00–10:00</td><td>2.b Svalbard</td><td>76.40 N · 13.80 E</td><td class="num">600</td><td class="num">8,1</td></tr>
+</table></div>
+<h2>Destino — movimentos</h2>
+<div class="box"><table>
+ <tr><th>Data (UTC)</th><th>Movimento</th><th>Porão</th><th class="num">Caixas</th><th>Destino</th><th>Comprador</th></tr>
+ <tr><td>15/07 21:00</td><td>Entrada no porão</td><td>Porão 1</td><td class="num">+197</td><td>—</td><td>—</td></tr>
+ <tr><td>20/07 09:00</td><td>Transbordo</td><td>Porão 1</td><td class="num">−100</td><td>Reefer Exemplo (IMO 9000002)</td><td>Comprador Exemplo B</td></tr>
+</table></div>
+</main></body></html>

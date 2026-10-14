@@ -1,0 +1,188 @@
+/* Estilo comum dos ecrãs — segue os mockups UI01–UI05 (documentation/mockups) */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: 'DejaVu Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  background: #f6f6f6;
+  color: #1f2933;
+}
+
+/* ---------- Barra lateral ---------- */
+.side {
+  width: 210px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 18px 22px;
+  background: #eef1f4;
+  border-right: 1px solid #dde1e6;
+}
+/* Logótipo do navio (public/img/logo.png, fundo transparente) */
+.brand { display: block; line-height: 0; }
+.brand img { display: block; width: 100%; height: auto; }
+.sub { font-size: 11.5px; color: #6b7280; margin: 10px 0 26px; text-align: center; }
+.nav a, .nav span {
+  display: block;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+}
+.nav a:hover { background: #e4e8ec; }
+.nav .on { background: #dfe3e8; font-weight: 700; }
+.nav span { color: #a0a6ad; cursor: default; }
+.foot { margin-top: auto; font-size: 11px; color: #8a9099; line-height: 1.5; }
+
+/* ---------- Área principal ---------- */
+main { flex: 1; padding: 28px 40px 40px; max-width: 1100px; }
+h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+.crumb {
+  color: #6b7280;
+  font-size: 12.5px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #d4d8dd;
+}
+h2 { font-size: 16px; font-weight: 700; margin: 18px 0 10px; }
+
+.row { display: flex; gap: 16px; }
+.mt { margin-top: 14px; }
+
+.tile {
+  flex: 1;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #c9d0d8;
+  border-radius: 8px;
+}
+.tile .k { font-size: 11.5px; font-weight: 700; color: #5b6573; }
+.tile .v { font-size: 22px; font-weight: 700; margin-top: 6px; }
+.tile .s { font-size: 11px; color: #6b7280; margin-top: 3px; }
+
+.box { padding: 6px 16px; background: #fff; border: 1px solid #c9d0d8; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; }
+th { padding: 9px 6px; font-size: 11px; color: #5b6573; text-align: left; border-bottom: 1px solid #e3e6ea; }
+td { padding: 8px 6px; font-size: 12.5px; border-bottom: 1px solid #f0f1f3; }
+tr:last-child td { border-bottom: none; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.vazio { padding: 18px 6px; color: #6b7280; text-align: center; }
+
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border: 1px solid #5b5b5b;
+  border-radius: 6px;
+  background: #5b5b5b;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn.sec { background: #fff; color: #444; border-color: #b8bec6; }
+select.btn { padding-right: 12px; }
+
+.note {
+  padding: 9px 12px;
+  font-size: 12px;
+  color: #444;
+  background: #f0f1f3;
+  border: 1px dashed #9aa3ad;
+  border-radius: 6px;
+}
+
+/* ---------- Formulários ---------- */
+.f { flex: 1; min-width: 0; }
+label { display: block; margin-bottom: 5px; font-size: 11.5px; font-weight: 700; color: #5b6573; }
+.in {
+  width: 100%;
+  height: 36px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 12.5px;
+  color: #1f2933;
+  background: #fff;
+  border: 1px solid #c9d0d8;
+  border-radius: 6px;
+}
+.in:focus { outline: 2px solid #8ea4bd; outline-offset: 0; }
+.in[readonly] { color: #6b7280; background: #eef0f2; }
+td .in { height: 30px; max-width: 140px; text-align: right; }
+.btn:disabled { opacity: .5; cursor: default; }
+
+/* Ações dentro de uma linha de tabela (UI02: fechar turno) */
+.acoes { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+td .in.data { max-width: 190px; text-align: left; }
+td select.in { max-width: 220px; height: 32px; padding: 3px 8px; text-align: left; }
+.btn.pequeno { padding: 6px 12px; font-size: 12px; }
+.nota { font-size: 11px; color: #6b7280; }
+
+/* Escolha com botões de opção, com o aspeto de um campo (UI03: tipo de saída) */
+.opcoes {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  height: 36px;
+  padding: 0 11px;
+  background: #fff;
+  border: 1px solid #c9d0d8;
+  border-radius: 6px;
+}
+label.marca { display: inline-flex; gap: 6px; align-items: center; margin: 0; font-size: 12.5px; font-weight: 400; color: #1f2933; cursor: pointer; }
+.opcoes label { display: inline-flex; gap: 6px; align-items: center; margin: 0; font-size: 12.5px; font-weight: 400; color: #1f2933; cursor: pointer; }
+
+/* Aviso da aplicação antes de gravar (a BD é que decide) */
+.warn {
+  display: none;
+  padding: 9px 12px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #9aa3ad;
+  border-left: 5px solid #555;
+  border-radius: 6px;
+}
+.warn.visivel { display: block; }
+
+.sucesso {
+  display: none;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  background: #f0f8f1;
+  border: 1px solid #9cc7a3;
+  border-left: 5px solid #3d7a48;
+  border-radius: 6px;
+}
+.sucesso.visivel { display: block; }
+
+.pill.sem { color: #6b7280; border-style: dashed; }
+
+/* Mensagem de erro (vinda da BD ou da ligação) */
+.erro {
+  display: none;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  background: #fff4f2;
+  border: 1px solid #e3a59b;
+  border-left: 5px solid #b4412e;
+  border-radius: 6px;
+}
+.erro.visivel { display: block; }
+
+/* Barra de consumo com as marcas dos 75 % e 90 % */
+.bar { position: relative; height: 12px; min-width: 220px; background: #e6e9ec; border-radius: 6px; }
+.bar i { position: absolute; top: 0; bottom: 0; left: 0; background: #7a7a7a; border-radius: 6px; }
+.bar b { position: absolute; top: -3px; bottom: -3px; width: 0; border-left: 2px dashed #555; }
+.bar.atencao i { background: #c98a1b; }
+.bar.critico i { background: #b4412e; }
+
+.pill { display: inline-block; white-space: nowrap; padding: 1px 9px; font-size: 11px; border: 1px solid #9aa3ad; border-radius: 10px; }
+.pill.atencao { color: #7a4f00; background: #fff4dc; border-color: #c98a1b; }
+.pill.critico { color: #fff; background: #b4412e; border-color: #b4412e; }

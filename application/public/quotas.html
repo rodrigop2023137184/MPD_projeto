@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de quotas — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1 id="titulo">Painel de quotas</h1>
+    <div class="crumb" id="subtitulo">Peso vivo capturado face à quota anual</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+
+    <div class="row" id="cartoes"></div>
+
+    <h2>Consumo por espécie e zona</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Espécie</th>
+            <th>Zona</th>
+            <th class="num">Capturado (kg)</th>
+            <th class="num">Quota (kg)</th>
+            <th>Consumo (linhas: 75 % e 90 %)</th>
+            <th class="num">%</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="linhas">
+          <tr><td colspan="7" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mt" style="justify-content: space-between; align-items: center">
+      <div class="note">
+        Estados: OK abaixo de 75 % · ATENÇÃO a partir de 75 % · CRÍTICO a partir de 90 %.
+        Fonte: vista v_quota_consumo.
+      </div>
+      <div style="white-space: nowrap; flex-shrink: 0; margin-left: 16px">
+        <select class="btn sec" id="ano" aria-label="Ano"></select>
+        &nbsp;
+        <a class="btn" id="exportar" href="#">Exportar CSV</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/js/quotas.js"></script>
+</body>
+</html>

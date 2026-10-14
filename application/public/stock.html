@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock e saídas — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1>Stock a bordo e saídas</h1>
+    <div class="crumb" id="subtitulo">Comandante</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="sucesso" id="sucesso" role="status"></div>
+
+    <div class="row" id="cartoes"></div>
+
+    <h2>Stock por porão e lote</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Porão</th>
+            <th>Lote</th>
+            <th>Espécie</th>
+            <th class="num">Entradas</th>
+            <th class="num">Saídas</th>
+            <th class="num">Stock (cx)</th>
+          </tr>
+        </thead>
+        <tbody id="linhas">
+          <tr><td colspan="6" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form id="formulario" novalidate>
+      <h2>Nova saída</h2>
+      <div class="row">
+        <div class="f">
+          <label for="lotePorao">Lote e porão</label>
+          <select class="in" id="lotePorao" required></select>
+        </div>
+        <div class="f">
+          <label>Tipo</label>
+          <div class="opcoes" role="radiogroup" aria-label="Tipo de saída">
+            <label><input type="radio" name="tipo" value="descarga" checked> Descarga em porto</label>
+            <label><input type="radio" name="tipo" value="transbordo"> Transbordo</label>
+          </div>
+        </div>
+        <div class="f" id="campoEscala">
+          <label for="escala">Escala</label>
+          <select class="in" id="escala" required></select>
+        </div>
+        <div class="f" id="campoNavio" hidden>
+          <label for="navio">Navio recetor (nome ou IMO)</label>
+          <input class="in" id="navio" maxlength="50" placeholder="Reefer Exemplo (IMO 9000002)">
+        </div>
+      </div>
+
+      <div class="row mt" style="align-items: flex-end">
+        <div style="width: 130px">
+          <label for="caixas">Caixas</label>
+          <input class="in" id="caixas" type="number" min="1" step="1" required>
+        </div>
+        <div style="width: 210px">
+          <label for="dataSaida">Data da saída (UTC)</label>
+          <input class="in" id="dataSaida" type="datetime-local" required>
+        </div>
+        <div class="f">
+          <label for="comprador">Comprador</label>
+          <input class="in" id="comprador" maxlength="100" placeholder="Comprador Exemplo A">
+        </div>
+        <div class="f note" id="disponivel">Disponível neste porão: —</div>
+        <div>
+          <button class="btn" type="submit" id="gravar">Registar saída</button>
+        </div>
+      </div>
+
+      <div class="warn mt" id="aviso"></div>
+    </form>
+
+    <h2>Saídas registadas</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Data (UTC)</th>
+            <th>Tipo</th>
+            <th>Destino</th>
+            <th>Lote</th>
+            <th>Porão</th>
+            <th class="num">Caixas</th>
+            <th>Comprador</th>
+          </tr>
+        </thead>
+        <tbody id="saidas">
+          <tr><td colspan="7" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script type="module" src="/js/stock.js"></script>
+</body>
+</html>

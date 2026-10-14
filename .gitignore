@@ -1,0 +1,9 @@
+# Dependências e credenciais da aplicação
+node_modules/
+.env
+
+# Documentos reais da tripulação (dados pessoais — RGPD)
+*.xlsx
+
+# Pasta antiga, substituída por application/ e documentation/
+prototipo_sta_princesa/

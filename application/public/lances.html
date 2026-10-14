@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registar lance — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1>Registar lance</h1>
+    <div class="crumb" id="subtitulo">Mestre de pesca</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="sucesso" id="sucesso" role="status"></div>
+
+    <form id="formulario" novalidate>
+      <div class="row">
+        <div class="f">
+          <label for="viagem">Viagem</label>
+          <input class="in" id="viagem" readonly>
+        </div>
+        <div style="width: 150px">
+          <label for="numero">N.º do lance</label>
+          <input class="in" id="numero" readonly>
+        </div>
+        <div class="f">
+          <label for="zona">Zona de pesca</label>
+          <select class="in" id="zona" required></select>
+        </div>
+      </div>
+
+      <div class="row mt">
+        <div class="f">
+          <label for="inicio">Início (UTC)</label>
+          <input class="in" id="inicio" type="datetime-local" required>
+        </div>
+        <div class="f">
+          <label for="fim">Fim (UTC)</label>
+          <input class="in" id="fim" type="datetime-local">
+        </div>
+        <div class="f">
+          <label for="latitude">Latitude</label>
+          <input class="in" id="latitude" type="number" step="0.000001" min="-90" max="90" placeholder="71.100000">
+        </div>
+        <div class="f">
+          <label for="longitude">Longitude</label>
+          <input class="in" id="longitude" type="number" step="0.000001" min="-180" max="180" placeholder="17.900000">
+        </div>
+        <div style="width: 130px">
+          <label for="profundidade">Profundidade (m)</label>
+          <input class="in" id="profundidade" type="number" step="1" min="0" max="3000" placeholder="290">
+        </div>
+      </div>
+
+      <h2>Capturas (peso vivo)</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th>Espécie</th>
+              <th class="num">Peso vivo (kg)</th>
+              <th class="num">Quota restante nesta zona</th>
+              <th class="num">Depois de gravar</th>
+              <th style="width: 90px"></th>
+            </tr>
+          </thead>
+          <tbody id="capturas"></tbody>
+        </table>
+      </div>
+
+      <div class="warn mt" id="aviso"></div>
+
+      <div class="row mt" style="justify-content: flex-end; gap: 12px">
+        <button class="btn sec" type="reset" id="limpar">Limpar</button>
+        <button class="btn" type="submit" id="gravar">Gravar lance</button>
+      </div>
+    </form>
+
+    <h2 id="tituloLista">Lances da viagem</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th class="num">N.º</th>
+            <th>Início (UTC)</th>
+            <th>Fim (UTC)</th>
+            <th>Zona</th>
+            <th>Capturas (peso vivo)</th>
+            <th class="num">Total (kg)</th>
+          </tr>
+        </thead>
+        <tbody id="lances">
+          <tr><td colspan="6" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script type="module" src="/js/lances.js"></script>
+</body>
+</html>

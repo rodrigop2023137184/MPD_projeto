@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fechar lote — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1>Fechar lote</h1>
+    <div class="crumb" id="subtitulo">Responsável de fábrica</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="sucesso" id="sucesso" role="status"></div>
+
+    <!-- Turnos da viagem em curso: abrir (INSERT) e fechar (UPDATE fim) -->
+    <h2 id="tituloTurnos">Turnos da viagem</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Início (UTC)</th>
+            <th>Fim (UTC)</th>
+            <th>Responsável</th>
+            <th class="num">Lotes</th>
+            <th style="width: 330px"></th>
+          </tr>
+        </thead>
+        <tbody id="turnos">
+          <tr><td colspan="5" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form id="abrirTurno" class="row mt" style="align-items: flex-end" novalidate>
+      <div class="f">
+        <label for="turnoInicio">Abrir turno — início (UTC)</label>
+        <input class="in" id="turnoInicio" type="datetime-local" required>
+      </div>
+      <div class="f">
+        <label for="turnoResponsavel">Responsável</label>
+        <select class="in" id="turnoResponsavel" required></select>
+      </div>
+      <div>
+        <button class="btn sec" type="submit" id="btnAbrirTurno">Abrir turno</button>
+      </div>
+    </form>
+
+    <!-- Fechar lote (mockup UI02) -->
+    <form id="formulario" novalidate>
+      <h2>Novo lote</h2>
+      <div class="row">
+        <div class="f">
+          <label for="turno">Turno</label>
+          <select class="in" id="turno" required></select>
+        </div>
+        <div class="f">
+          <label for="produto">Produto</label>
+          <select class="in" id="produto" required></select>
+        </div>
+        <div style="width: 200px">
+          <label for="codigo">Código do lote</label>
+          <input class="in" id="codigo" readonly>
+        </div>
+      </div>
+
+      <h2 id="tituloOrigem">Origem do peixe</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th>Lance</th>
+              <th>Fim</th>
+              <th>Zona</th>
+              <th class="num" id="colDisponivel">Disponível (kg)</th>
+              <th class="num">Usar neste lote (kg)</th>
+            </tr>
+          </thead>
+          <tbody id="lances">
+            <tr><td colspan="5" class="vazio">Escolha o turno e o produto.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row mt">
+        <div class="f">
+          <label for="caixas">Caixas produzidas</label>
+          <input class="in" id="caixas" type="number" min="1" step="1" required>
+        </div>
+        <div class="f">
+          <label for="pesoProduto">Peso do produto (kg)</label>
+          <input class="in" id="pesoProduto" readonly>
+        </div>
+        <div class="f">
+          <label for="materiaPrima">Matéria-prima (kg)</label>
+          <input class="in" id="materiaPrima" readonly>
+        </div>
+        <div class="f">
+          <label for="rendimento">Rendimento</label>
+          <input class="in" id="rendimento" readonly>
+        </div>
+      </div>
+
+      <h2>Armazenamento</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th>Porão</th>
+              <th class="num">Capacidade livre (cx)</th>
+              <th class="num">Caixas a guardar</th>
+            </tr>
+          </thead>
+          <tbody id="poroes">
+            <tr><td colspan="3" class="vazio">A carregar…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn mt" id="aviso"></div>
+
+      <div class="row mt" style="justify-content: space-between; align-items: center">
+        <div class="note">Tudo é gravado numa só transação: se um passo falhar, nada fica registado.</div>
+        <div style="white-space: nowrap; flex-shrink: 0; margin-left: 16px">
+          <button class="btn sec" type="reset" id="cancelar">Cancelar</button>
+          &nbsp;
+          <button class="btn" type="submit" id="gravar">Fechar lote</button>
+        </div>
+      </div>
+    </form>
+
+    <h2 id="tituloLotes">Lotes da viagem</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Turno</th>
+            <th class="num">Caixas</th>
+            <th class="num">Produto (kg)</th>
+            <th class="num">Matéria-prima (kg)</th>
+            <th class="num">Rend.</th>
+            <th>Lances (peso vivo)</th>
+            <th>Porões</th>
+          </tr>
+        </thead>
+        <tbody id="lotes">
+          <tr><td colspan="8" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script type="module" src="/js/lotes.js"></script>
+</body>
+</html>

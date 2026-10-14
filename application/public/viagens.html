@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Viagens e escalas — STA PRINCESA</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <main>
+    <h1>Viagens e escalas</h1>
+    <div class="crumb" id="subtitulo">Comandante</div>
+
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="sucesso" id="sucesso" role="status"></div>
+
+    <div class="row" id="cartoes"></div>
+
+    <h2>Escalas do navio</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Porto</th>
+            <th>ETA</th>
+            <th>ETD</th>
+            <th>ATA</th>
+            <th>ATD</th>
+            <th class="num">Calado (m)</th>
+            <th>Uso</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="escalas">
+          <tr><td colspan="8" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Registar / corrigir uma escala (horas previstas e reais, UTC) -->
+    <form id="formEscala" novalidate>
+      <h2 id="tituloEscala">Nova escala</h2>
+      <div class="row">
+        <div class="f">
+          <label for="escala">Escala</label>
+          <select class="in" id="escala"></select>
+        </div>
+        <div class="f">
+          <label for="porto">Porto</label>
+          <select class="in" id="porto" required></select>
+        </div>
+        <div style="width: 130px">
+          <label for="calado">Calado (m)</label>
+          <input class="in" id="calado" type="number" min="0" max="99.99" step="0.01" placeholder="7.50">
+        </div>
+        <div class="f">
+          <label for="nivel">Nível de segurança</label>
+          <input class="in" id="nivel" maxlength="30" placeholder="Security Level 1">
+        </div>
+      </div>
+      <div class="row mt">
+        <div class="f">
+          <label for="eta">ETA — chegada prevista (UTC)</label>
+          <input class="in" id="eta" type="datetime-local">
+        </div>
+        <div class="f">
+          <label for="etd">ETD — partida prevista (UTC)</label>
+          <input class="in" id="etd" type="datetime-local">
+        </div>
+        <div class="f">
+          <label for="ata">ATA — chegada real (UTC)</label>
+          <input class="in" id="ata" type="datetime-local">
+        </div>
+        <div class="f">
+          <label for="atd">ATD — partida real (UTC)</label>
+          <input class="in" id="atd" type="datetime-local">
+        </div>
+      </div>
+      <div class="warn mt" id="avisoEscala"></div>
+      <div class="row mt" style="justify-content: space-between; align-items: center">
+        <div class="note">ETA/ETD são previsões e podem mudar ou ficar vazias; ATA/ATD só depois de acontecerem.</div>
+        <div style="white-space: nowrap; flex-shrink: 0; margin-left: 16px">
+          <button class="btn sec" type="button" id="limparEscala">Limpar</button>
+          &nbsp;
+          <button class="btn" type="submit" id="gravarEscala">Gravar escala</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Registar a chegada e fechar a viagem em curso -->
+    <form id="formFechar" novalidate>
+      <h2 id="tituloFechar">Registar chegada e fechar a viagem</h2>
+      <div id="semViagem" class="note" hidden>Não há nenhuma viagem em curso.</div>
+      <div id="blocoFechar">
+        <div class="row">
+          <div class="f">
+            <label>Escala de chegada</label>
+            <div class="opcoes" role="radiogroup" aria-label="Escala de chegada">
+              <label><input type="radio" name="modo" value="nova" checked> Nova escala (chegada agora)</label>
+              <label><input type="radio" name="modo" value="existente"> Escala já registada</label>
+            </div>
+          </div>
+          <div class="f" id="campoExistente" hidden>
+            <label for="escalaChegada">Escala</label>
+            <select class="in" id="escalaChegada"></select>
+          </div>
+          <div class="f" id="campoPortoChegada">
+            <label for="portoChegada">Porto</label>
+            <select class="in" id="portoChegada"></select>
+          </div>
+          <div style="width: 220px">
+            <label for="ataChegada">ATA — chegada real (UTC)</label>
+            <input class="in" id="ataChegada" type="datetime-local">
+          </div>
+        </div>
+        <div class="row mt" id="camposNova">
+          <div style="width: 130px">
+            <label for="caladoChegada">Calado (m)</label>
+            <input class="in" id="caladoChegada" type="number" min="0" max="99.99" step="0.01" placeholder="7.50">
+          </div>
+          <div class="f">
+            <label for="nivelChegada">Nível de segurança</label>
+            <input class="in" id="nivelChegada" maxlength="30" placeholder="Security Level 1">
+          </div>
+        </div>
+
+        <h2>Tripulação — quem desembarca nesta escala</h2>
+        <div class="box">
+          <table>
+            <thead>
+              <tr>
+                <th>Tripulante</th>
+                <th>Posto</th>
+                <th style="width: 200px">Desembarca</th>
+              </tr>
+            </thead>
+            <tbody id="tripulacao">
+              <tr><td colspan="3" class="vazio">A carregar…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn mt" id="avisoFechar"></div>
+        <div class="row mt" style="justify-content: space-between; align-items: center">
+          <div class="note">Tudo é gravado numa só transação: escala, fecho da viagem e desembarques. Desmarcado = fica a bordo para a viagem seguinte.</div>
+          <div style="white-space: nowrap; flex-shrink: 0; margin-left: 16px">
+            <button class="btn" type="submit" id="gravarFechar">Fechar viagem</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Abrir a viagem seguinte (partida + tripulação) -->
+    <form id="formNova" novalidate>
+      <h2 id="tituloNova">Abrir nova viagem</h2>
+      <div class="row">
+        <div style="width: 170px">
+          <label for="numNova">Viagem</label>
+          <input class="in" id="numNova" readonly>
+        </div>
+        <div class="f">
+          <label for="escalaPartida">Escala de partida</label>
+          <select class="in" id="escalaPartida"></select>
+        </div>
+        <div class="f">
+          <label for="etdNova">ETD — partida prevista (UTC)</label>
+          <input class="in" id="etdNova" type="datetime-local">
+        </div>
+        <div class="f">
+          <label for="atdNova">ATD — partida real (UTC)</label>
+          <input class="in" id="atdNova" type="datetime-local">
+        </div>
+      </div>
+
+      <h2>Tripulação — quem embarca</h2>
+      <div class="box">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 110px">Embarca</th>
+              <th>Tripulante</th>
+              <th>Posto nesta viagem</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tripulacaoNova">
+            <tr><td colspan="4" class="vazio">A carregar…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn mt" id="avisoNova"></div>
+      <div class="row mt" style="justify-content: space-between; align-items: center">
+        <div class="note">Tudo é gravado numa só transação: horas de partida, viagem e tripulação. A chegada fica por indicar até ao fecho.</div>
+        <div style="white-space: nowrap; flex-shrink: 0; margin-left: 16px">
+          <button class="btn" type="submit" id="gravarNova">Abrir viagem</button>
+        </div>
+      </div>
+    </form>
+
+    <h2>Viagens do navio</h2>
+    <div class="box">
+      <table>
+        <thead>
+          <tr>
+            <th>Viagem</th>
+            <th>Partida (UTC)</th>
+            <th>Chegada (UTC)</th>
+            <th class="num">Lances</th>
+            <th class="num">Tripulação</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="viagens">
+          <tr><td colspan="6" class="vazio">A carregar…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script type="module" src="/js/viagens.js"></script>
+</body>
+</html>
